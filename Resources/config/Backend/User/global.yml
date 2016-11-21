@@ -1,0 +1,41 @@
+actions:
+    index:
+        route: 'bk_wh_user_user_index'
+    create:
+        route: 'bk_wh_user_user_create'
+    update:
+        route: 'bk_wh_user_user_update'
+        parameters:
+            id: 'id'
+    delete:
+        route: 'bk_wh_user_user_delete'
+        parameters:
+            id: 'id'
+    resetPassword:
+        route: 'bk_wh_user_user_resetpassword'
+        parameters:
+            id: 'id'
+
+formFields:
+    id:
+        label: 'ID'
+    email:
+        label: 'Email'
+        field: 'email'
+        type: 'email'
+    plainPassword:
+        label: 'Mot de passe'
+        field: 'plainPassword'
+        type: 'password'
+    roles:
+        label: 'Rôles'
+        field: 'roles'
+        type: 'choice'
+        multiple: 'true'
+        options:
+            type: 'parameter'
+            parameter: 'security.role_hierarchy.roles'
+
+menus:
+    main: 'backend-menu'
+    right: 'backend-menu-right'

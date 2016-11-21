@@ -1,0 +1,13 @@
+modal: 'true'
+
+title: 'Editer un utilisateur'
+
+formFields:
+    - email
+    - roles
+
+footerFormFields:
+    save:
+        label: 'Enregistrer'
+        field: 'save'
+        color: 'success'

@@ -1,0 +1,16 @@
+{
+  "name": "whatson-web/user-bundle",
+  "type": "symfony-bundle",
+  "description": "Symfony - Whatson Web - UserBundle",
+  "homepage": "https://github.com/whatson-web/UserBundle",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Whatson Web - Developers",
+      "email": "dev@whatson-web.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.3.9"
+  }
+}

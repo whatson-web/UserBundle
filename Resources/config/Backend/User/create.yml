@@ -1,0 +1,12 @@
+title: 'Créer un utilisateur'
+
+formFields:
+    - email
+    - plainPassword
+    - roles
+
+footerFormFields:
+    create:
+        label: 'Créer'
+        field: 'create'
+        color: 'success'

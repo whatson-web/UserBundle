@@ -1,0 +1,4 @@
+resetting:
+    check_email: |
+        Un email a été envoyé. Il contient un lien sur lequel il vous faudra cliquer pour réinitialiser votre mot de passe.
+        Si vous ne recevez pas un email, vérifiez votre dossier spam ou essayez à nouveau.

@@ -1,0 +1,4 @@
+services:
+    bk.wh_user.mailer:
+        class: WH\UserBundle\Mailer\BackendMailer
+        arguments: ["@mailer", "@router", "@twig", {'from_email' : {'resetting' : 'test@gmail.com'}}]

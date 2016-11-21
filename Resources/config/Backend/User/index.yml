@@ -1,0 +1,51 @@
+title: 'Liste des utilisateurs'
+breadcrumb:
+    index:
+        label: 'Liste des utilisateurs'
+        action: 'index'
+
+search: 'true'
+
+formPanelProperties:
+    headerLabel: 'Filtrer les utilisateurs'
+    formFields:
+        name:
+            label: 'Nom'
+            field: 'name'
+            type: 'text'
+            conditionType: 'like'
+            col: '6'
+    footerListButtons:
+        submit:
+            buttonType: 'button'
+            label: 'Filtrer'
+
+tablePanelProperties:
+    headerLabel: 'Liste des utilisateurs'
+    headerListButtons:
+        create:
+            buttonType: 'link'
+            color: 'success'
+            label: 'Créer un utilisateur'
+            action: 'create'
+            modal: 'true'
+            size: 'xs'
+    tableFields:
+        buttons:
+            multipleFields:
+            update:
+                icon: 'pencil'
+                modal: 'true'
+                action: 'update'
+            delete:
+                icon: 'trash'
+                color: 'danger'
+                action: 'delete'
+                confirm: 'Êtes-vous sûr de vouloir supprimer cet utilisateur ?'
+            resetPassword:
+                icon: 'lock'
+                color: 'warning'
+                action: 'resetPassword'
+                confirm: 'Êtes-vous sûr de vouloir réinitialiser et envoyer un nouveau mot de passe à cet utilisateur ?'
+        id:
+        email:
