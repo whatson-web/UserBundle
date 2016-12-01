@@ -1,40 +1,32 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-<div class="row">
 
-    <div class="col-md-4"></div>
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
 
-    <div class="col-md-4">
-
-        {% if error %}
-            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    <form action="{{ path("bk_wh_user_security_logincheck") }}" method="post">
+        {% if csrf_token %}
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
         {% endif %}
 
-        <form action="{{ path("bk_wh_user_security_logincheck") }}" method="post">
-            {% if csrf_token %}
-                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
-            {% endif %}
+        <div class="form-group">
+            <label for="username" class="control-label">{{ 'security.login.username'|trans }}</label>
+            <input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}"
+                   required="required"/>
+        </div>
 
-            <div class="form-group">
-                <label for="username" class="control-label">{{ 'security.login.username'|trans }}</label>
-                <input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}"
-                       required="required"/>
-            </div>
+        <div class="form-group">
+            <label for="password" class="control-label">{{ 'security.login.password'|trans }}</label>
+            <input type="password" class="form-control" id="password" name="_password" required="required"/>
+        </div>
 
-            <div class="form-group">
-                <label for="password" class="control-label">{{ 'security.login.password'|trans }}</label>
-                <input type="password" class="form-control" id="password" name="_password" required="required"/>
-            </div>
+        <p><a href="{{ path('bk_wh_user_resetting_request') }}">Mot de passe perdu ?</a></p>
 
-            <p><a href="{{ path('bk_wh_user_resetting_request') }}">Mot de passe perdu ?</a></p>
+        <div class="submit">
+            <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}"
+                   class="btn btn-primary"/>
+        </div>
 
-            <div class="submit">
-                <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}"
-                       class="btn btn-primary"/>
-            </div>
+    </form>
 
-        </form>
-
-    </div>
-
-</div>
