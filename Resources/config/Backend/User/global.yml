@@ -37,5 +37,5 @@ formFields:
             parameter: 'security.role_hierarchy.roles'
 
 menus:
-    main: 'backend-menu'
-    right: 'backend-menu-right'
+    main: 'backendMenu'
+    right: 'backendMenuRight'

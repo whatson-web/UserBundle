@@ -110,4 +110,19 @@ class UserController extends BaseController
 		return $this->redirect($this->getActionUrl($this->getEntityPathConfig(), 'index'));
 	}
 
+	/**
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
+	public function flapColumnAction()
+	{
+		$user = $this->getUser();
+
+		return $this->render(
+			'@WHUser/Backend/User/flap-column.html.twig',
+			array(
+				'user' => $user,
+			)
+		);
+	}
+
 }
