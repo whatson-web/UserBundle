@@ -1,4 +1,4 @@
-title: 'Créer un utilisateur'
+title: 'Create a user'
 
 formFields:
     - email
@@ -7,6 +7,6 @@ formFields:
 
 footerFormFields:
     create:
-        label: 'Créer'
+        label: 'Create'
         field: 'create'
         color: 'success'

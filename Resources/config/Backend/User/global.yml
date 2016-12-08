@@ -24,11 +24,11 @@ formFields:
         field: 'email'
         type: 'email'
     plainPassword:
-        label: 'Mot de passe'
+        label: 'Password'
         field: 'plainPassword'
         type: 'password'
     roles:
-        label: 'Rôles'
+        label: 'Roles'
         field: 'roles'
         type: 'choice'
         multiple: 'true'

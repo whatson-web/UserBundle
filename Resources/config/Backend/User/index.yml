@@ -1,16 +1,16 @@
-title: 'Liste des utilisateurs'
+title: 'Users list'
 breadcrumb:
     index:
-        label: 'Liste des utilisateurs'
+        label: 'Users list'
         action: 'index'
 
 search: 'true'
 
 formPanelProperties:
-    headerLabel: 'Filtrer les utilisateurs'
+    headerLabel: 'Filter users'
     formFields:
         name:
-            label: 'Nom'
+            label: 'Name'
             field: 'name'
             type: 'text'
             conditionType: 'like'
@@ -18,15 +18,15 @@ formPanelProperties:
     footerListButtons:
         submit:
             buttonType: 'button'
-            label: 'Filtrer'
+            label: 'Filter'
 
 tablePanelProperties:
-    headerLabel: 'Liste des utilisateurs'
+    headerLabel: 'Users list'
     headerListButtons:
         create:
             buttonType: 'link'
             color: 'success'
-            label: 'Créer un utilisateur'
+            label: 'Create a user'
             action: 'create'
             modal: 'true'
             size: 'xs'
@@ -41,11 +41,11 @@ tablePanelProperties:
                 icon: 'trash'
                 color: 'danger'
                 action: 'delete'
-                confirm: 'Êtes-vous sûr de vouloir supprimer cet utilisateur ?'
+                confirm: 'Do you want really want to delete this user ?'
             resetPassword:
                 icon: 'lock'
                 color: 'warning'
                 action: 'resetPassword'
-                confirm: 'Êtes-vous sûr de vouloir réinitialiser et envoyer un nouveau mot de passe à cet utilisateur ?'
+                confirm: 'Do you want really want to reinitialize and send a new password to this user ?'
         id:
         email:

@@ -1,6 +1,6 @@
 modal: 'true'
 
-title: 'Editer un utilisateur'
+title: 'Edit a user'
 
 formFields:
     - email
@@ -8,6 +8,6 @@ formFields:
 
 footerFormFields:
     save:
-        label: 'Enregistrer'
+        label: 'Save'
         field: 'save'
         color: 'success'
