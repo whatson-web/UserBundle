@@ -32,7 +32,7 @@ class User extends BaseUser
 
 		$this->addRole('ROLE_USER');
 		$this->enabled = true;
-		$this->password = self::generateStrongPassword();
+		$this->plainPassword = self::generateStrongPassword();
 	}
 
 	/**
