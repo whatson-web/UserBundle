@@ -5,7 +5,7 @@ namespace WH\UserBundle\Controller\Backend;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use WH\BackendBundle\Controller\Backend\BaseController;
-use WH\UserBundle\Entity\User;
+use UserBundle\Entity\User;
 
 /**
  * @Route("/admin/users")
@@ -17,112 +17,55 @@ use WH\UserBundle\Entity\User;
 class UserController extends BaseController
 {
 
-	public $bundlePrefix = 'WH';
-	public $bundle = 'UserBundle';
-	public $entity = 'User';
+    public $bundlePrefix = 'WH';
+    public $bundle = 'UserBundle';
+    public $entity = 'User';
 
-	/**
-	 * @Route("/index/", name="bk_wh_user_user_index")
-	 *
-	 * @param Request $request
-	 *
-	 * @return string
-	 */
-	public function indexAction(Request $request)
-	{
-		$indexController = $this->get('bk.wh.back.index_controller');
+    /**
+     * @Route("/reset_password/{id}", name="bk_wh_user_user_resetpassword")
+     *
+     * @param         $id
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
+    public function resetPasswordAction($id)
+    {
+        $em = $this->get('doctrine')->getManager();
 
-		return $indexController->index($this->getEntityPathConfig(), $request);
-	}
+        $user = $em->getRepository('UserBundle:User')->get(
+            'one',
+            array(
+                'conditions' => array(
+                    'user.id' => $id,
+                ),
+            )
+        );
 
-	/**
-	 * @Route("/create/", name="bk_wh_user_user_create")
-	 *
-	 * @param Request $request
-	 *
-	 * @return mixed
-	 */
-	public function createAction(Request $request)
-	{
-		$createController = $this->get('bk.wh.back.create_controller');
+        if ($user) {
+            $newPassword = User::generateStrongPassword();
 
-		return $createController->create($this->getEntityPathConfig(), $request);
-	}
+            $user->setPlainPassword($newPassword);
+            $this->get('fos_user.user_manager')->updateUser($user);
 
-	/**
-	 * @Route("/update/{id}", name="bk_wh_user_user_update")
-	 *
-	 * @param         $id
-	 * @param Request $request
-	 *
-	 * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
-	 */
-	public function updateAction($id, Request $request)
-	{
-		$updateController = $this->get('bk.wh.back.update_controller');
+            $this->get('bk.wh_user.mailer')->sendResettingPasswordMessage($user, $newPassword);
+        }
 
-		return $updateController->update($this->getEntityPathConfig(), $id, $request);
-	}
+        return $this->redirect($this->getActionUrl($this->getEntityPathConfig(), 'index'));
+    }
 
-	/**
-	 * @Route("/delete/{id}", name="bk_wh_user_user_delete")
-	 *
-	 * @param         $id
-	 *
-	 * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
-	 */
-	public function deleteAction($id)
-	{
-		$deleteController = $this->get('bk.wh.back.delete_controller');
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function flapColumnAction()
+    {
+        $user = $this->getUser();
 
-		return $deleteController->delete($this->getEntityPathConfig(), $id);
-	}
-
-	/**
-	 * @Route("/reset_password/{id}", name="bk_wh_user_user_resetpassword")
-	 *
-	 * @param         $id
-	 *
-	 * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
-	 */
-	public function resetPasswordAction($id)
-	{
-		$em = $this->get('doctrine')->getManager();
-
-		$user = $em->getRepository('WHUserBundle:User')->get(
-			'one',
-			array(
-				'conditions' => array(
-					'user.id' => $id,
-				),
-			)
-		);
-
-		if ($user) {
-			$newPassword = User::generateStrongPassword();
-
-			$user->setPlainPassword($newPassword);
-			$this->get('fos_user.user_manager')->updateUser($user);
-
-			$this->get('bk.wh_user.mailer')->sendResettingPasswordMessage($user, $newPassword);
-		}
-
-		return $this->redirect($this->getActionUrl($this->getEntityPathConfig(), 'index'));
-	}
-
-	/**
-	 * @return \Symfony\Component\HttpFoundation\Response
-	 */
-	public function flapColumnAction()
-	{
-		$user = $this->getUser();
-
-		return $this->render(
-			'@WHUser/Backend/User/flap-column.html.twig',
-			array(
-				'user' => $user,
-			)
-		);
-	}
+        return $this->render(
+            '@WHUser/Backend/User/flap-column.html.twig',
+            array(
+                'user' => $user,
+            )
+        );
+    }
 
 }
