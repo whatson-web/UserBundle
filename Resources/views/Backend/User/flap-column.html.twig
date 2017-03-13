@@ -1,15 +1,12 @@
-<div class="nav-header">
-    <div class="dropdown profile-element">
-
-        <span>
-            <img src="{{ asset ('back/images/default-avatar.png') }}" alt="Example" />
-        </span>
-
-        <span class="clear">
-        <span class="block m-t-xs">
-            <strong class="font-bold">{{ user.username }}</strong>
-        </span>
-    </span>
+<a href="#" data-ma-action="profile-menu-toggle">
+    <div class="sp-pic">
+        {% image '@WHBackendTemplateBundle/Resources/public/plugins/material/img/profile.jpg' %}
+        <img src="{{ asset_url }}" alt="Example"/>
+        {% endimage %}
     </div>
-</div>
 
+    <div class="sp-info">
+        {{ user.username }}
+        <i class="zmdi zmdi-caret-down"></i>
+    </div>
+</a>
