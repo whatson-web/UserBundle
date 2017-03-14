@@ -1,29 +1,40 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
+<div class="login-content">
+
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
-    <form action="{{ path("sudo_wh_user_security_logincheck") }}" method="post">
+    <div class="lc-block toggled" id="l-login">
 
-        {% if csrf_token %}
-            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
-        {% endif %}
+        <form action="{{ path("sudo_wh_user_security_logincheck") }}" method="post" class="lcb-form">
+            {% if csrf_token %}
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+            {% endif %}
 
-        <div class="form-group">
-            <label for="username" class="control-label">{{ 'security.login.username'|trans }}</label>
-            <input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}"
-                   required="required"/>
-        </div>
+            <div class="input-group m-b-20">
+                <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
+                <div class="fg-line">
+                    <input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}"
+                           required="required" placeholder="Email"/>
+                </div>
+            </div>
 
-        <div class="form-group">
-            <label for="password" class="control-label">{{ 'security.login.password'|trans }}</label>
-            <input type="password" class="form-control" id="password" name="_password" required="required"/>
-        </div>
+            <div class="input-group m-b-20">
+                <span class="input-group-addon"><i class="zmdi zmdi-male"></i></span>
+                <div class="fg-line">
+                    <input type="password" class="form-control" id="password" name="_password" required="required"
+                           placeholder="Password"/>
+                </div>
+            </div>
 
-        <div class="submit">
-            <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}"
-                   class="btn btn-primary"/>
-        </div>
+            <button type="submit" id="_submit" name="_submit" class="btn btn-login btn-success btn-float">
+                <i class="zmdi zmdi-arrow-forward"></i>
+            </button>
 
-    </form>
+        </form>
+
+    </div>
+
+</div>
