@@ -34,11 +34,11 @@ class UserController extends BaseController
 
         $user = $em->getRepository('UserBundle:User')->get(
             'one',
-            array(
-                'conditions' => array(
+            [
+                'conditions' => [
                     'user.id' => $id,
-                ),
-            )
+                ],
+            ]
         );
 
         if ($user) {
@@ -50,7 +50,9 @@ class UserController extends BaseController
             $this->get('bk.wh_user.mailer')->sendResettingPasswordMessage($user, $newPassword);
         }
 
-        return $this->redirect($this->getActionUrl($this->getEntityPathConfig(), 'index'));
+        return $this->redirect(
+            $this->generateUrl('bk_user_user_index')
+        );
     }
 
     /**
@@ -62,9 +64,9 @@ class UserController extends BaseController
 
         return $this->render(
             '@WHUser/Backend/User/flap-column.html.twig',
-            array(
+            [
                 'user' => $user,
-            )
+            ]
         );
     }
 
